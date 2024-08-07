@@ -1,0 +1,22 @@
+/* Common styles for all screen sizes */  
+  .user-box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-box-heading {
+    flex-grow: 1;
+  }
+  
+  .user-box-button {
+    flex-shrink: 0;
+  }
+  
+  /* Responsive styles for tablets and smaller screens */
+  

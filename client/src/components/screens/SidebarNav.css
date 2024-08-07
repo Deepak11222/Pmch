@@ -1,0 +1,39 @@
+/* SidebarNav.css */
+
+/* Sidebar navigation container */
+.sidebar-nav {
+    width: 250px; /* Set the width of the sidebar */
+    background-color: #333; /* Background color of the sidebar */
+    color: #fff; /* Text color */
+    height: 100%; /* Make the sidebar fill the entire height */
+    position: fixed; /* Fixed position to stay on the screen while scrolling */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    overflow-y: auto; /* Add vertical scrolling if needed */
+  }
+  
+  /* Sidebar navigation list */
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Sidebar navigation item */
+  .sidebar-nav ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Sidebar navigation link */
+  .sidebar-nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Link text color */
+    padding: 10px; /* Spacing around the links */
+    display: block; /* Make links block-level for full width */
+  }
+  
+  /* Sidebar navigation link hover effect */
+  .sidebar-nav ul li a:hover {
+    background-color: #555; /* Background color on hover */
+  }
+  

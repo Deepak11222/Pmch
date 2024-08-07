@@ -1,0 +1,25 @@
+/* Navbar.css */
+
+/* Navbar container */
+.navbar {
+  background-color: #333; /* Navbar background color */
+  color: #fff; /* Text color */
+  display: flex;
+  justify-content: space-between; /* Align button to the right */
+  align-items: center; /* Center button vertically */
+  padding: 10px; /* Spacing around the button */
+}
+
+/* Toggle button */
+.toggle-button {
+  background-color: #555; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none;
+  padding: 10px 20px; /* Button padding */
+  cursor: pointer;
+}
+
+/* Apply styles when the navbar is closed */
+.navbar-closed {
+  width: 60px; /* Set the width of the closed navbar */
+}

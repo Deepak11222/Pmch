@@ -1,0 +1,12 @@
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.form-group label {
+    text-align: left;
+  }  
