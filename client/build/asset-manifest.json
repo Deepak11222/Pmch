@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.31f93e42.chunk.css",
+    "main.js": "/static/js/main.9fbd9844.chunk.js",
+    "main.js.map": "/static/js/main.9fbd9844.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e4510807.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e4510807.js.map",
+    "static/css/2.2a93c54b.chunk.css": "/static/css/2.2a93c54b.chunk.css",
+    "static/js/2.a4f99fd4.chunk.js": "/static/js/2.a4f99fd4.chunk.js",
+    "static/js/2.a4f99fd4.chunk.js.map": "/static/js/2.a4f99fd4.chunk.js.map",
+    "static/js/3.5d731151.chunk.js": "/static/js/3.5d731151.chunk.js",
+    "static/js/3.5d731151.chunk.js.map": "/static/js/3.5d731151.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.2a93c54b.chunk.css.map": "/static/css/2.2a93c54b.chunk.css.map",
+    "static/css/main.31f93e42.chunk.css.map": "/static/css/main.31f93e42.chunk.css.map",
+    "static/js/2.a4f99fd4.chunk.js.LICENSE.txt": "/static/js/2.a4f99fd4.chunk.js.LICENSE.txt",
+    "static/media/aboutimg6.c3973feb.jpg": "/static/media/aboutimg6.c3973feb.jpg",
+    "static/media/aboutimg7.d4bcb740.jpg": "/static/media/aboutimg7.d4bcb740.jpg",
+    "static/media/Style.css": "/static/media/img1.5e574b39.jpg",
+    "static/media/faq-img-1.jpg": "/static/media/faq-img-1.09fe67e4.jpg",
+    "static/media/faq-img-2.jpg": "/static/media/faq-img-2.3460041a.jpg",
+    "static/media/faq-shape.png": "/static/media/faq-shape.ee04b314.png",
+    "static/media/footerlogo.jpg": "/static/media/footerlogo.6fc3c37a.jpg",
+    "static/media/img1.a0fca9c5.png": "/static/media/img1.a0fca9c5.png",
+    "static/media/img2.f5f922c9.png": "/static/media/img2.f5f922c9.png",
+    "static/media/img3.6b148454.png": "/static/media/img3.6b148454.png",
+    "static/media/logo.png": "/static/media/logo.fb0b9f22.png",
+    "static/media/remixicon.css": "/static/media/remixicon.ff1ec9ee.eot",
+    "static/media/single-service-1.jpg": "/static/media/single-service-1.120c3fed.jpg",
+    "static/media/single-service-2.jpg": "/static/media/single-service-2.3878ee2e.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4510807.js",
+    "static/css/2.2a93c54b.chunk.css",
+    "static/js/2.a4f99fd4.chunk.js",
+    "static/css/main.31f93e42.chunk.css",
+    "static/js/main.9fbd9844.chunk.js"
+  ]
+}
