@@ -3,7 +3,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import PageSubCategory from './PageSubCategory';
 import Ourteam from './Ourteam';
 import Addstore from './Addstore';
-import AddDoctorForm from './AddDoctorForm';
+import AddDoctorForm from './AddDoctor';
 import ManageStore from './ManageStore';
 import Managedoctors from './Managedoctors';
 import Orders from './Orders';
@@ -11,6 +11,22 @@ import OrderInfo from './OrderInfo';
 import Superadmindashboard from './Superadmindashboard';
 import UserList from './UserList';
 import MedicinePurchaseForm from './MedicinePurchaseForm ';
+import DeliveryBoyManagement from './DeliveryBoyManagement';
+import AssignDeliveryBoy from './AssignDeliveryBoy';
+import DeliveryBoysList from './DeliveryBoysList';
+import DeliveryBoyDashboard from './DeliveryBoyDashboard';
+import DeliveryBoyRegister from './DeliveryBoyRegister';
+import DeliveryBoyLogin from './DeliveryBoyLogin';
+import LabTests from './LabTests';
+import TestBooking from './TestBooking';
+import TestDetails from './TestDetails';
+import TestHistory from './TestHistory';
+import CustomerTestPage from './CustomerTestPage';
+import OrderHistory from './OrderHistory';
+import ManageSpecialties from './Managespecialties';
+import AddSpecialties from './Addspecialties';
+import AddDoctor from './AddDoctor';
+import BookDoctor from './BookDoctor';
 
 const getPageName = (pathname) => {
   switch (pathname) {
@@ -85,6 +101,21 @@ function ContentWrapper() {
         <div className="container-fluid">
           <Switch>
             <Route path="/admin/dashboard" component={Superadmindashboard} />
+            <Route path="/admin/bookdoctor" component={BookDoctor} />
+            <Route path="/admin/add-specialties" component={AddSpecialties} />
+            <Route path="/admin/specialties" component={ManageSpecialties} />
+            <Route path="/admin/customertest" component={CustomerTestPage} />
+            <Route path="/admin/lab-tests" component={LabTests} />
+            <Route path="/admin/orderhistory" component={OrderHistory} />
+            <Route path="/admin/test-booking/:testId" component={TestBooking} />
+            <Route path="/admin/test-history" component={TestHistory} />
+            <Route path="/admin/test-details/:testId" component={TestDetails} />
+            <Route path="/admin/deliveryregist5ration" component={DeliveryBoyRegister} />
+            <Route path="/admin/deliverylogin" component={DeliveryBoyLogin} />
+            <Route path="/admin/delivery-boy/dashboard" component={DeliveryBoyDashboard} />
+            <Route path="/admin/deliveryboylist" component={DeliveryBoysList} />
+            <Route path="/admin/assigndelivery" component={AssignDeliveryBoy} />
+            <Route path="/admin/deliveryboy" component={DeliveryBoyManagement} />
             <Route path="/admin/buymedicine" component={MedicinePurchaseForm} />
             <Route path="/admin/customers" component={UserList} />
             <Route
@@ -96,6 +127,7 @@ function ContentWrapper() {
             />
             <Route path="/admin/pagesubcategory" component={PageSubCategory} />
             <Route path="/admin/orders" component={Orders} />
+            <Route path="/admin/doctor" component={AddDoctor} />
             <Route path="/admin/add-store" component={Addstore} />
             <Route path="/admin/managestore" component={ManageStore} />
             <Route path="/admin/managstore" component={Managedoctors} />

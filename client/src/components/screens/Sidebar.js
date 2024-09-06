@@ -12,7 +12,7 @@ const Sidebar = () => {
         <Switch>
       <div className="wrapper">
         <Header />
-        <VerticalMenu />
+        <VerticalMenu deliveryBoyId="66b5f0a8fecd092cd4b0093c" />
         <ContentWrapper/>
       </div>
       </Switch>

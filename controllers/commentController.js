@@ -1,6 +1,6 @@
 const Comment = require('../models/Comment');
 const Medicine = require('../models/Medicine');
-const Customer = require('../models/Customers');
+const Customer = require('../models/Customer');
 
 const addComment = async (req, res) => {
   const { medicineId, customerId, comment, rating } = req.body;

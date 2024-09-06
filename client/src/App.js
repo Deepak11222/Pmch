@@ -12,7 +12,7 @@ import Nephrology from "./components/screens/Nephrology";
 import Urology from "./components/screens/Urology";
 import Orthopedics from "./components/screens/Orthopedics";
 import GALS from "./components/screens/GALS";
-import Cardiology from "./components/screens/Cardiology";
+// import Cardiology from "./components/screens/Cardiology";
 import AppointmentForm from "./components/screens/AppointmentForm";
 import ContactSection from "./components/screens/Contact";
 import Slide from "./components/screens/Slide";
@@ -26,7 +26,7 @@ import VerticalMenu from "./components/screens/VerticalMenu ";
 
 // Import the new store admin components
 import StoreAdminLogin from "./components/screens/StoreAdminLogin";
-import StoreAdminDashboard from "./components/screens/StoreAdminDashboard";
+// import StoreAdminDashboard from "./components/screens/StoreAdminDashboard";
 import StoreAdminPrivateRoute from "./components/routing/StoreAdminPrivateRoute";
 import AdminLayout from "./components/screens/AdminLayout";
 import Adminpanelsidebar from "./components/screens/Adminpanelsidebar";
@@ -35,7 +35,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/admin/login" component={LoginScreen} />
+        <Route path="/superadmin" component={LoginScreen} />
         <Route path="/admin/register" component={RegisterScreen} />
         <Route path="/admin/forgotpassword" component={ForgotPasswordScreen} />
         <Route path="/admin/passwordreset/:resetToken" component={ResetPasswordScreen} />
@@ -66,11 +66,11 @@ const App = () => {
           </SuperAdminLayout>
         </Route>
 
-        <Route path="/storeadmin">
+        <Route path="/">
           <AdminLayout>
             <Switch>
               {/* Add routes for store admin login and dashboard */}
-              <Route path="/storeadmin/login" component={StoreAdminLogin} />
+              <Route path="/login" component={StoreAdminLogin} />
               <StoreAdminPrivateRoute path="/storeadmin/dashboard" component={Adminpanelsidebar} />
               <StoreAdminPrivateRoute path="/storeadmin/private" component={PrivateScreen} />
               <Redirect from="/storeadmin" to="/storeadmin/dashboard" />

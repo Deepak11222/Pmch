@@ -87,13 +87,19 @@ const OrderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'processed', 'shipped', 'delivered'],
+    enum: ['pending', 'processing', 'shipped', 'delivered', 'assigned'], // Add 'assigned' to the enum list
     default: 'pending'
+  },
+  deliveryBoy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'DeliveryBoy'
   },
   billingAddress: AddressSchema,
   shippingAddress: AddressSchema,
   items: [ItemSchema], // Array of ordered items
 }, { timestamps: true }); // Enable timestamps
+
+
 
 const Order = mongoose.model('Order', OrderSchema);
 

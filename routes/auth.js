@@ -222,9 +222,10 @@ router.put('/store/:id', async (req, res) => {
 
 const Medicine = require('../models/Medicine');
 const Order = require('../models/order');
-const Customer = require('../models/Customers');
+const Customer = require('../models/Customer');
 const MedicineData = require('../models/MedicineData');
 const MedicineType = require('../models/MedicineType');
+const Specialties = require("../models/Specialties");
 
 // Create a new order
 // router.post('/orders', async (req, res) => {
@@ -440,6 +441,33 @@ router.delete('/medicine/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting medicine:', error);
     res.status(500).json({ message: 'Failed to delete medicine' });
+  }
+});
+
+router.post('/specialties', upload.single('image'), async (req, res) => {
+  try {
+    const { title, description } = req.body;
+
+    // Check if image was uploaded
+    let imageUrl = '';
+    if (req.file) {
+      imageUrl = req.file.path; // Store the file path
+    }
+
+    // Create a new blog object
+    const newSpecialties = new Specialties({
+      title: title,
+      description: description,
+      image: req.file ? req.file.buffer.toString('base64') : null,
+    });
+
+    // Save the blog to the database
+    const savedSpecialties = await newSpecialties.save();
+
+    res.json({ success: true, message: 'Blog added successfully', specialties: savedSpecialties });
+  } catch (error) {
+    console.error('Error adding blog:', error);
+    res.status(500).json({ success: false, message: 'Failed to add blog' });
   }
 });
 

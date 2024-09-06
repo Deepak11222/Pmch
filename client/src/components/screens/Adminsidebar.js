@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Adminsidebar() {
   return (
-    <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{ background: '#0b3548', position: "fixed", bottom: 0, float: "none", top: 0 }}>
+    <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{ background: 'rgb(11 95 30)', position: "fixed", bottom: 0, float: "none", top: 0 }}>
       <Link to="/admin/dashboard" className="brand-link" style={{ background: 'white', border: '0px !important', display: 'flex', justifyContent: 'center' }}>
         <div className="adminheaderimg">
         <img src={require('../imgs/logo.png').default} alt="Logo" />

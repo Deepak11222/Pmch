@@ -3,7 +3,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import PageSubCategory from './PageSubCategory';
 import Ourteam from './Ourteam';
 import Addstore from './Addstore';
-import AddDoctorForm from './AddDoctorForm';
+import AddDoctorForm from './AddDoctor';
 import ManageStore from './ManageStore';
 import Managedoctors from './Managedoctors';
 import AddCardiology from './AddCardiology';

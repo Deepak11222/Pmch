@@ -55,9 +55,9 @@ const Superadmindashboard = () => {
     const fetchDashboardData = async () => {
       try {
         // Fetch orders and customers
-        const ordersResponse = await axios.get('http://localhost:3000/orders');
+        const ordersResponse = await axios.get('/orders');
         const orders = ordersResponse.data;
-        const customersResponse = await axios.get('http://localhost:3000/customers');
+        const customersResponse = await axios.get('/customers');
         const customers = customersResponse.data.data;
 
         // Update orders and customers state
