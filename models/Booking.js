@@ -2,8 +2,10 @@
 const mongoose = require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    test: { type: mongoose.Schema.Types.ObjectId, ref: 'LabTest', required: true },
+    // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // test: { type: mongoose.Schema.Types.ObjectId, ref: 'LabTest', required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    test: { type: mongoose.Schema.Types.ObjectId, ref: 'LabTest', },
     status: { type: String, enum: ['Pending', 'Completed', 'Cancelled'], default: 'Pending' },
     date: { type: Date, required: true },
     report: { type: mongoose.Schema.Types.ObjectId, ref: 'Report' },

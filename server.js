@@ -115,7 +115,7 @@ app.put('/doctor/:id', upload.single('image'), updateDoctor);
 // Route to delete a doctor
 app.delete('/doctor/:id', deleteDoctor);
 
-app.post('/', bookDoctor);
+app.post('/book-doctor', bookDoctor);
 app.get('/customer/:customerId', getBookingsByCustomer);
 
 

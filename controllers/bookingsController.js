@@ -6,38 +6,25 @@ const Booking = require('../models/Booking');
 
 exports.bookDoctor = async (req, res) => {
   try {
-    const { customerId, doctorId, bookingDate, comments, rating } = req.body;
+      const { doctorId, customerId, bookingDate, comments } = req.body;
 
-    // Create booking
-    const newBooking = new Booking({
-      customerId,
-      doctorId,
-      bookingDate,
-      comments,
-      rating
-    });
+      const newBooking = {
+          doctorId,
+          customerId,
+          date: bookingDate,
+          comments
+      };
 
-    await newBooking.save();
-
-    // Update doctor rating
-    const doctor = await Doctor.findById(doctorId);
-    if (doctor) {
-      // Calculate new rating
-      const totalBookings = await Booking.countDocuments({ doctorId });
-      const averageRating = (
-        (doctor.rating * (totalBookings - 1) + rating) / totalBookings
-      ).toFixed(1);
-      
-      doctor.rating = averageRating;
-      await doctor.save();
-    }
-
-    res.status(201).json(newBooking);
+      const booking = await Booking.create(newBooking);
+      res.status(201).json({
+          message: 'Doctor booked successfully',
+          booking
+      });
   } catch (error) {
-    console.error('Error booking doctor:', error);
-    res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ message: 'Error booking doctor', error });
   }
 };
+
 
 exports.getBookingsByCustomer = async (req, res) => {
   try {
