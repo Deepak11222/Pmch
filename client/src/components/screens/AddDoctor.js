@@ -5,6 +5,8 @@ const AddDoctor = () => {
   const [name, setName] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [qualification, setQualification] = useState('');
+  const [experience, setExperience] = useState('');
+  const [age, setAge] = useState('');
   const [department, setDepartment] = useState('');
   const [designation, setDesignation] = useState('');
   const [description, setDescription] = useState('');
@@ -36,6 +38,8 @@ const AddDoctor = () => {
     formData.append('name', name);
     formData.append('mobileNumber', mobileNumber);
     formData.append('qualification', qualification);
+    formData.append('experience', experience);
+    formData.append('age', age);
     formData.append('department', department);
     formData.append('designation', designation);
     formData.append('description', description);
@@ -78,8 +82,16 @@ const AddDoctor = () => {
           <input type="text" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} required />
         </div>
         <div>
-          <label>Qualification</label>
+        <label>Qualification</label>
           <input type="text" value={qualification} onChange={(e) => setQualification(e.target.value)} />
+        </div>
+        <div>
+                    <label>Experience</label>
+          <input type="text" value={experience} onChange={(e) => setExperience(e.target.value)} />
+        </div>
+        <div>
+        <label>Age</label>
+          <input type="text" value={age} onChange={(e) => setAge(e.target.value)} />
         </div>
         <div>
           <label>Department</label>

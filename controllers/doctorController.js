@@ -5,11 +5,13 @@ const ErrorResponse = require('../utils/errorResponse');
 // Create a new doctor
 exports.createDoctor = async (req, res) => {
     try {
-      const { name, mobileNumber, qualification, department, designation, description, address, fee, rating, type } = req.body;
+      const { name, mobileNumber, qualification, experience, age, department, designation, description, address, fee, rating, type } = req.body;
       const newDoctor = new Doctor({
         name,
         mobileNumber,
         qualification,
+        experience,
+        age,
         department,
         designation,
         description,
