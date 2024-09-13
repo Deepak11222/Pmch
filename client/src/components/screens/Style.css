@@ -1270,7 +1270,6 @@ select {
 }
 
 /* .content-wrapper {
-  margin-top: 134px;
 } */
 
 .bg-transparent {
@@ -1905,7 +1904,6 @@ select {
 }
 
 /* .content-wrapper {
-  margin-top: 134px;
 } */
 
 .bg-transparent {
@@ -4496,7 +4494,7 @@ article ol li, .service-desc ol li, .terms-wrap ol li {
 
 .hero-wrap {
   position: relative;
-  margin-top: 138px;
+  /* margin-top: 138px; */
 }
 
 .hero-wrap .hero-content span {
@@ -7583,7 +7581,7 @@ article {
 
 .post-author {
   padding: 25px;
-  margin: 15px 0 30px;
+   margin: 15px 0 30px;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.09);
           box-shadow: 0 0 15px rgba(0, 0, 0, 0.09);

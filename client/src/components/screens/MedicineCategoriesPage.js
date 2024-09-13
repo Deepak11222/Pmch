@@ -13,7 +13,7 @@ const ManageMedicineCategories = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('/api/auth/medicine-categories');
+      const response = await axios.get('/medicine-categories');
       if (response.data.success) {
         setCategories(response.data.data);
       } else {

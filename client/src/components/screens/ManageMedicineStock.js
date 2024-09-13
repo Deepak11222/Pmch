@@ -28,7 +28,7 @@ const ManageStock = () => {
       const decodedToken = jwt.decode(token);
       if (decodedToken && decodedToken.store) {
         const storeId = decodedToken.store;
-        const response = await axios.get(`/api/auth/medicines/${storeId}`, {
+        const response = await axios.get(`/medicines/${storeId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

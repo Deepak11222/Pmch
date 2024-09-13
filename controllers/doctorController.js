@@ -4,30 +4,48 @@ const ErrorResponse = require('../utils/errorResponse');
 
 // Create a new doctor
 exports.createDoctor = async (req, res) => {
-    try {
-      const { name, mobileNumber, qualification, experience, age, department, designation, description, address, fee, rating, type } = req.body;
-      const newDoctor = new Doctor({
-        name,
-        mobileNumber,
-        qualification,
-        experience,
-        age,
-        department,
-        designation,
-        description,
-        address,
-        fee,
-        rating,
-        type,
-        image: req.file ? req.file.path : null, // File path or URL
-      });
-      const savedDoctor = await newDoctor.save();
-      res.status(201).json(savedDoctor);
-    } catch (error) {
-      console.error('Error creating doctor:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  };
+  try {
+    const { name, mobileNumber, qualification, experience, age, department, designation, description, address, fee, rating, type } = req.body;
+
+    console.log('Received Data:', {
+      name,
+      mobileNumber,
+      qualification,
+      experience,
+      age,
+      department,
+      designation,
+      description,
+      address,
+      fee,
+      rating,
+      type
+    }); // Log received data
+
+    const newDoctor = new Doctor({
+      name,
+      mobileNumber,
+      qualification,
+      experience,
+      age,
+      department,
+      designation,
+      description,
+      address,
+      fee,
+      rating,
+      type,
+      image: req.file ? req.file.path : null,
+    });
+
+    const savedDoctor = await newDoctor.save();
+    res.status(201).json(savedDoctor);
+  } catch (error) {
+    console.error('Error creating doctor:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
   
 
 // Get all doctors

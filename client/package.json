@@ -1,5 +1,6 @@
 {
   "name": "client",
+  "homepage": "https://pharmacy.prashanthospital.in/",
   "version": "0.1.0",
   "proxy": "http://localhost:8081",
   "private": true,

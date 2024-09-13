@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
-import PageSubCategory from './PageSubCategory';
 import Ourteam from './Ourteam';
 import Addstore from './Addstore';
 import AddDoctorForm from './AddDoctor';
@@ -87,7 +86,7 @@ function AdminWrapper() {
                 <h4 className="mb-0 font-size-18">{pageName}</h4>
                 <div className="page-title-right">
                   <ol className="breadcrumb m-0">
-                    <li className="breadcrumb-item"><a href="#">Home</a></li>
+                    <li className="breadcrumb-item"><a >Home</a></li>
                     <li className="breadcrumb-item active">{pageName}</li>
                     <li className="breadcrumb-item">
                       <span>{currentTime.toLocaleTimeString()}</span>

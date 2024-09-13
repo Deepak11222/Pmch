@@ -13,7 +13,7 @@ const ManageManufacturer = () => {
 
   const fetchManufacturer = async () => {
     try {
-      const response = await axios.get('/api/auth/manufacturer');
+      const response = await axios.get('/manufacturer');
       if (response.data.success) {
         setManufacturer(response.data.data);
       } else {

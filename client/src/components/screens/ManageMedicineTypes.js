@@ -13,7 +13,7 @@ const ManageMedicineTypes = () => {
 
   const fetchMedicineTypes = async () => {
     try {
-      const response = await axios.get('/api/auth/medicine-types');
+      const response = await axios.get('/medicine-types');
       if (response.data.success) {
         setMedicineTypes(response.data.data);
       } else {

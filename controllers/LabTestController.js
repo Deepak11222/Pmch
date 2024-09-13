@@ -7,7 +7,7 @@ const Purchase = require('../models/Purchase');
 
 
 // Remove a lab test from the cart
-exports.removeFromCart = async (req, res) => {
+exports.removeLabtestFromCart = async (req, res) => {
   try {
     const { testId } = req.body; // Only expect testId
 
@@ -16,13 +16,13 @@ exports.removeFromCart = async (req, res) => {
     }
 
     const cart = await Cart.findOne({ customer: req.customer._id });
-    
+
     if (!cart) {
       return res.status(404).send('Cart not found');
     }
 
     const itemIndex = cart.tests.findIndex(item => item.toString() === testId.toString());
-    
+
     if (itemIndex === -1) {
       return res.status(404).send('Test not found in cart');
     }
@@ -36,6 +36,7 @@ exports.removeFromCart = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+
 
 
 
@@ -178,34 +179,43 @@ exports.getTestHistory = async (req, res) => {
     { id: 2, name: 'Diabetes Panel', date: '2024-08-10', status: 'Pending' },
   ]);
 };
-exports.bookFromCart = async (req, res) => {
+exports.bookLabtestFromCart = async (req, res) => {
   try {
     // Find the customer's cart
-    const cart = await Cart.findOne({ customer: req.customer._id });
+    const cart = await Cart.findOne({ customerId: req.customer._id });
 
     if (!cart || cart.tests.length === 0) {
       return res.status(400).json({ success: false, error: "Cart is empty" });
     }
 
     // Create bookings for each test in the cart
-    const bookings = await Promise.all(cart.tests.map(testId =>
-      LabTestBooking.create({
+    const bookings = await Promise.all(cart.tests.map(async (test) => {
+      // Ensure `testId` is being used to find lab test
+      const labTest = await LabTest.findById(test.testId);
+
+      if (!labTest) {
+        throw new Error(`Lab test with ID ${test.testId} not found`);
+      }
+
+      return LabTestBooking.create({
         customer: req.customer._id,
-        test: testId,
-      })
-    ));
+        tests: [{ testId: labTest._id, quantity: test.quantity }],
+        status: 'Pending'
+      });
+    }));
 
     // Clear the cart after booking
     await Cart.findByIdAndDelete(cart._id);
 
     res.status(200).json({ success: true, bookings });
   } catch (error) {
+    console.error('Error booking tests from cart:', error);
     res.status(500).json({ success: false, error: "Failed to book the tests" });
   }
 };
 
 // Add selected lab tests to the customer's cart
-exports.addToCart = async (req, res) => {
+exports.addLabtestToCart = async (req, res) => {
   const { testIds } = req.body;
 
   if (!Array.isArray(testIds) || testIds.length === 0) {
@@ -214,26 +224,37 @@ exports.addToCart = async (req, res) => {
 
   try {
     // Check if the customer already has a cart
-    let cart = await Cart.findOne({ customer: req.customer._id });
+    let cart = await Cart.findOne({ customerId: req.customer._id });
 
     if (cart) {
-      // Add the new tests to the existing cart
-      cart.tests.push(...testIds);
-      cart.tests = [...new Set(cart.tests.map(testId => testId.toString()))]; // Ensure no duplicates
+      // Add or update the tests in the existing cart
+      testIds.forEach(async (testId) => {
+        const existingTestIndex = cart.tests.findIndex(test => test.testId.toString() === testId.toString());
+
+        if (existingTestIndex > -1) {
+          // Test already in cart, increment quantity
+          cart.tests[existingTestIndex].quantity = (cart.tests[existingTestIndex].quantity || 0) + 1;
+        } else {
+          // Add new test
+          cart.tests.push({ testId, quantity: 1 });
+        }
+      });
     } else {
       // Create a new cart if the customer doesn't have one
       cart = new Cart({
-        customer: req.customer._id,
-        tests: testIds
+        customerId: req.customer._id,
+        tests: testIds.map(testId => ({ testId, quantity: 1 }))
       });
     }
 
     await cart.save();
     res.status(200).json({ success: true, cart });
   } catch (error) {
+    console.error('Failed to add tests to cart:', error); // Log error details for debugging
     res.status(500).json({ success: false, error: "Failed to add tests to cart" });
   }
-};// Add selected lab tests to the customer's cart
+};
+/// Add selected lab tests to the customer's cart
 // exports.addToCart = async (req, res) => {
 //   const { testIds } = req.body;
 

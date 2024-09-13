@@ -1,5 +1,7 @@
 const Customer = require('../models/Customer');
 const LabTest = require('../models/LabTest');
+const Medicine = require('../models/Medicine');
+const MedicineData = require('../models/MedicineData');
 const Purchase = require('../models/Purchase');
 const ErrorResponse = require('../utils/errorResponse');
 
@@ -42,7 +44,91 @@ exports.getAllPurchases = async (req, res, next) => {
   };  
   
 
-// Controller to handle the purchase
+// Controller to handle the purchase of medicines
+// Controller to handle the purchase of medicines
+const Cart = require('../models/Cart'); // Adjust the path as necessary
+
+exports.makeMedicinePurchase = async (req, res, next) => {
+  try {
+    const customer = req.customer; // Extract customer from the request
+
+    // Fetch the customer's cart
+    const cart = await Cart.findOne({ customerId: customer._id });
+    if (!cart || !cart.medicines.length) {
+      return res.status(400).json({ success: false, message: 'Cart is empty or not found' });
+    }
+
+    // Fetch medicine data
+    const medicineDataIds = cart.medicines.map(med => med.medicineId);
+    const medicineDataList = await MedicineData.find({ 'medicineId': { $in: medicineDataIds } }).populate('medicineId');
+
+    // Validate medicines and their quantities
+    const purchaseDetailsMedicines = medicineDataList.map(data => {
+      const medicineDetail = cart.medicines.find(m => data.medicineId._id.toString() === m.medicineId.toString());
+
+      // Ensure that required fields are present and quantities are sufficient
+      if (!medicineDetail || !medicineDetail.quantity || medicineDetail.quantity <= 0) {
+        throw new Error('Incomplete or invalid medicine detail');
+      }
+
+      // Check if the requested quantity is available
+      if (data.stock < medicineDetail.quantity) {
+        throw new Error(`Insufficient stock for medicine: ${data.medicineId.medicineName}`);
+      }
+
+      return {
+        medicineId: data.medicineId._id,
+        quantity: medicineDetail.quantity,
+        name: data.medicineId.medicineName,
+        price: data.salesPrice || 0
+      };
+    });
+
+    // Calculate total amount
+    const totalAmount = purchaseDetailsMedicines.reduce((acc, med) => acc + (med.price * med.quantity), 0);
+
+    // Create a purchase record
+    const purchase = new Purchase({
+      customerId: customer._id,
+      medicines: purchaseDetailsMedicines,
+      totalAmount: totalAmount,
+      purchaseDate: new Date()
+    });
+
+    // Save the purchase record
+    await purchase.save();
+
+    // Update the medicine stock and clear the cart
+    for (const med of purchaseDetailsMedicines) {
+      await MedicineData.updateOne(
+        { 'medicineId': med.medicineId },
+        { $inc: { stock: -med.quantity } }
+      );
+    }
+
+    // Clear the cart after purchase
+    await Cart.findOneAndUpdate(
+      { customerId: customer._id },
+      { $set: { medicines: [] } },
+      { new: true }
+    );
+
+    // Respond with success message
+    res.status(201).json({
+      success: true,
+      message: 'Medicine purchase completed successfully',
+      purchaseId: purchase._id,
+      totalAmount: purchase.totalAmount
+    });
+
+  } catch (error) {
+    console.error('Error processing medicine purchase:', error.message);
+    return next(new ErrorResponse('Internal server error', 500));
+  }
+};
+
+
+
 // Controller to handle the purchase
 exports.makePurchase = async (req, res, next) => {
     try {

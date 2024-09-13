@@ -13,17 +13,14 @@ const ManageGenericNames = () => {
 
   const fetchGenericNames = async () => {
     try {
-      const response = await axios.get('/api/auth/generic-names');
-      if (response.data.success) {
-        setGenericNames(response.data.data);
-      } else {
-        setError('Failed to fetch generic names');
-      }
+        const response = await axios.get('/genericnames');
+        setGenericNames(response.data); // Directly set the array of generic names
     } catch (error) {
-      console.error('Error fetching generic names:', error);
-      setError('Failed to fetch generic names');
+        console.error('Error fetching generic names:', error);
+        setError('Failed to fetch generic names');
     }
-  };
+};
+
 
   const toggleStatus = async (genericNameId, currentStatus) => {
     try {

@@ -20,13 +20,13 @@ function VerticalMenu({ deliveryBoyId }) {
                 <p className='sidebarparagraph'>Dashboard</p>
               </Link>
             </li>
-            <li className="nav-item"  style={{ color:"white"}}>
+            {/* <li className="nav-item"  style={{ color:"white"}}>
               <Link to="/admin/specialties" className="nav-link">
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p className='sidebarparagraph'>Specialties</p>
               </Link>
-            </li>
-            <li className="nav-item"  style={{ color:"white"}}>
+            </li> */}
+            {/* <li className="nav-item"  style={{ color:"white"}}>
               <Link to="/admin/doctor" className="nav-link">
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p className='sidebarparagraph'>Doctor</p>
@@ -37,7 +37,7 @@ function VerticalMenu({ deliveryBoyId }) {
                 <i className="nav-icon fas fa-tachometer-alt"></i>
                 <p className='sidebarparagraph'>BookDoctor</p>
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to="#" className="nav-link">
                 <i className="nav-icon fa fa-copy"></i>

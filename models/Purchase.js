@@ -6,21 +6,29 @@ const PurchaseSchema = new mongoose.Schema({
     ref: 'Customer',
     required: true
   },
-  labTests: [{
-    testId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'LabTest',  // Reference to the LabTest model
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: Number,
-      required: true
+  labTests: [
+    {
+      testId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'LabTest',  // Reference to the LabTest model
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      price: {
+        type: Number,
+        required: true
+      }
     }
-  }],
+  ],
+  medicines: [{
+    medicineId: { type: mongoose.Schema.Types.ObjectId, ref: 'Medicine', required: true },
+    quantity: { type: Number, required: true },
+    name: { type: String, required: true },
+    price: { type: Number, required: true }
+}],
   totalAmount: {
     type: Number,
     required: true
@@ -35,4 +43,5 @@ const PurchaseSchema = new mongoose.Schema({
     default: 'pending'
   }
 });
-module.exports = mongoose.model('Purchase', PurchaseSchema);  // Make sure to export the model correctly
+
+module.exports = mongoose.model('Purchase', PurchaseSchema);

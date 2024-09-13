@@ -434,9 +434,7 @@
   .btn {
     padding: 12px 20px 12px;
   }
-  .content-wrapper {
-    margin-top: 245px;
-  }
+  
   .back-to-top {
     font-size: 20px;
     width: 35px;
@@ -1262,7 +1260,7 @@
     font-size: 35px;
   }
   .content-wrapper {
-    margin-top: 165px;
+    /* margin-top: 165px; */
   }
   .team-card .team-info h3,
   .contact-item .contact-info h3,

@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 
 const LabTestBookingSchema = new mongoose.Schema({
   customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
-  tests: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LabTest' }],
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'LabTest' }],  // To store selected tests in the cart
-  bookedAt: { type: Date, default: Date.now },
-  status: { type: String, default: 'Pending' }, // or any other status you want to track
+  tests: [{ 
+    testId: { type: mongoose.Schema.Types.ObjectId, ref: 'LabTest', required: true },
+    quantity: { type: Number, default: 1 }
+  }],
+  status: { type: String, default: 'Pending' },
+  bookedAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('LabTestBooking', LabTestBookingSchema);

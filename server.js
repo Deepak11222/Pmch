@@ -22,6 +22,7 @@ const {
 } = require('./controllers/customerController');
 
 const {getOrders, createOrder} = require('./controllers/orderController');
+const {getgenericnames, addgenericnames} = require('./controllers/genericnameController');
 const { addComment, getComments } = require('./controllers/commentController');
 const { bookDoctor, getBookingsByCustomer } = require('./controllers/bookingsController');
 
@@ -42,14 +43,16 @@ const {
   getPurchasesByCustomer,
   getPurchasesForLoggedInCustomer,
   getTestHistory,
-  addToCart,
-  removeFromCart,
+  addLabtestToCart,
+  removeLabtestFromCart,
   bookLabTest,
-  bookFromCart
+  bookLabtestFromCart
 } = require('./controllers/LabTestController');
 
-const { makePurchase, fetchPurchases, getAllPurchases } = require('./controllers/purchaseController');
+const { makePurchase,makeMedicinePurchase, fetchPurchases, getAllPurchases } = require('./controllers/purchaseController');
+const { getAllSpecialties } = require('./controllers/specialtiesController');
 const { getTotalSales, getTodaysSales } = require('./controllers/salesController');
+const { addMedicineToCart,viewMedicinesInCart,removeMedicineFromCart,fetchMedicineData, fetchstoremedicine, MedicinesData, getManufacturer, getManufacturers,getmedicineCategories,getmedicineTypes } = require('./controllers/medicineController');
 
 // Import Specialties Routes
 const specialtiesRoutes = require('./routes/specialties');
@@ -79,9 +82,9 @@ app.get('/purchases/:customerId', getPurchasesByCustomer);
 app.get('/purchased', protectCustomer, getPurchasesForLoggedInCustomer);
 
 // Lab Tests routes
-app.post('/labtests/book-from-cart', protectCustomer, bookFromCart);
-app.post('/cart/add', protectCustomer, addToCart);
-app.post('/cart/remove', protectCustomer, removeFromCart);
+app.post('/labtests/book-from-cart', protectCustomer, bookLabtestFromCart);
+app.post('/cart/add', protectCustomer, addLabtestToCart);
+app.post('/cart/remove', protectCustomer, removeLabtestFromCart);
 app.post('/lab-tests/add', addLabTest);
 app.post('/labtests/book', protectCustomer, bookLabTest);
 app.get('/lab-tests', getLabTests);
@@ -94,6 +97,7 @@ app.post('/purchase', protectCustomer, makePurchase); // Ensure customer is prot
 
 // Specialties routes
 app.use('/specialties', specialtiesRoutes);
+app.get('/specialties', getAllSpecialties);
 app.get('/orders', getOrders);
 app.post('/orders', createOrder);
 app.get('/total-sales', getTotalSales);
@@ -117,7 +121,24 @@ app.delete('/doctor/:id', deleteDoctor);
 
 app.post('/book-doctor', bookDoctor);
 app.get('/customer/:customerId', getBookingsByCustomer);
+app.get('/genericnames', getgenericnames);
+app.post('/generic-names', addgenericnames);
+app.get('/medicines', fetchMedicineData);
+app.get('/medicines/:storeId', fetchstoremedicine);
+app.get('/medicine-data/:storeId', MedicinesData);
+app.get('/medicine-categories', getmedicineCategories);
+app.get('/medicine-types', getmedicineTypes);
+app.get('/manufacturer', getManufacturer);
+app.get('/manufacturers', getManufacturers);
 
+  // Medicine Cart routes
+  app.post('/api/cart/medicines/add', protectCustomer, addMedicineToCart);
+  app.post('/api/cart/medicines/remove', protectCustomer, removeMedicineFromCart);
+  app.get('/api/cart/medicines', protectCustomer, viewMedicinesInCart);
+  app.post('/api/cart/purchase', protectCustomer, makeMedicinePurchase);
+  app.get('/viewmedicinepurchase', protectCustomer, viewMedicinesInCart);
+  app.post('/addmedicinetocart', protectCustomer, addMedicineToCart);
+  app.post('/removemedicinetocart', protectCustomer, removeMedicineFromCart);
 
 
 

@@ -25,7 +25,6 @@ import TPA from "./components/screens/TPA";
 import FAQ from "./components/screens/FAQ";
 import About from "./components/screens/About";
 import Dashboard from "./components/screens/DashboardScreen";
-import Photos from "./components/screens/Photo";
 import AdminPhoto from "./components/screens/Adminpoto";
 import AdminHomePage from "./components/routing/Adminhome";
 import Sidebar from "./components/screens/Sidebar";

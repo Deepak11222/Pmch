@@ -26,12 +26,23 @@ exports.createSpecialty = async (req, res, next) => {
 exports.getAllSpecialties = async (req, res, next) => {
   try {
     const specialties = await Specialties.find();
+    console.log(specialties); // Check what is being returned
     res.status(200).json({ success: true, specialties });
   } catch (error) {
     console.error('Error fetching specialties:', error);
     next(new ErrorResponse('Failed to fetch specialties', 500));
   }
 };
+
+// exports.getAllSpecialties = async (req, res) => {
+//   try {
+//     const specialties = await Specialties.find();
+//     res.json(specialties);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// };
+
 
 // Get a single specialty by ID
 exports.getSpecialtyById = async (req, res, next) => {

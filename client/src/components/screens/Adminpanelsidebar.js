@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Header from "./Header ";
-import VerticalMenu from "./VerticalMenu ";
-import ContentWrapper from "./Contentwrapper";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import Header from "./Header ";
+// import VerticalMenu from "./VerticalMenu ";
+// import ContentWrapper from "./Contentwrapper";
 import "./Sidebar.css";
 import Adminsidebar from "./Adminsidebar";
 import AdminWrapper from "./Adminwrapper";

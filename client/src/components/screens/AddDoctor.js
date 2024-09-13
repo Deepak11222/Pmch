@@ -51,15 +51,15 @@ const AddDoctor = () => {
       formData.append('image', image);
     }
   
+    console.log('Form Data:', formData); // Log the form data
+  
     try {
-      // Make sure the response is used
       const response = await axios.post('http://localhost:3000/doctor', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
   
-      // Use the response as needed
       console.log('Doctor added successfully:', response.data);
       setMessage('Doctor added successfully!');
     } catch (error) {

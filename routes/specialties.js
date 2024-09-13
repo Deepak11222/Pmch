@@ -14,7 +14,7 @@ const {
 router.post('/', upload.single('image'), createSpecialty);
 
 // Route to get all specialties
-router.get('/', getAllSpecialties);
+// router.get('/specialties', getAllSpecialties);
 
 // Route to get a specialty by ID
 router.get('/:id', getSpecialtyById);

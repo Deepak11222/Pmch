@@ -20,7 +20,7 @@ const ManageMedicineData = () => {
       const decodedToken = jwt.decode(token);
       if (decodedToken && decodedToken.store) {
         const storeId = decodedToken.store;
-        const response = await axios.get(`/api/auth/medicine-data/${storeId}`, {
+        const response = await axios.get(`/medicine-data/${storeId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
